@@ -1,0 +1,28 @@
+.contact-customer {
+  text-align: center;
+}
+
+.contact-customer ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.contact-customer ul li {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centra el contenido horizontalmente */
+  margin-bottom: 20px;
+}
+
+.contact-customer img {
+  width: 100px; /* Ajusta el tamaño según sea necesario */
+  margin-right: 20px;
+}
+
+.contact-customer div {
+  text-align: left; /* Alinea el texto a la izquierda */
+}
+
+.contact-customer p {
+  margin: 0;
+}

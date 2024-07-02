@@ -1,25 +1,44 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import './OrderList.css';
+import panImg from '../Assets/pan_marraqueta.jpg'; 
+import manzanaImg from '../Assets/Manzana-Fuji-granel.jpg'; 
+import lecheImg from '../Assets/Leche_sin.jpg'; 
+import MonsterNegra from '../Assets/MonsterNegra.jpg';
 
 function OrderList() {
-  const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
+  const user = { name: 'SebastianC', email: 's.calfunao01@ufromail.cl', phone: '+569 1234 5678' ,typeOrder: 'Retiro en tienda'};
+  const products = [
+    { name: 'Pan Marraqueta', quantity: '500gr aprox', image: panImg },
+    { name: 'Manzanas Fuji', quantity: '1kg aprox', image: manzanaImg },
+    { name: 'Leche Colum sin Lactosa', quantity: '1 litro', image: lecheImg },
+    { name: 'Monster Absolutely Zero', quantity: '500ml', image: MonsterNegra}
+  ];
 
-  useEffect(() => {
-    // Simulación de la recepción automática de la lista de productos
-    setProducts([
-      { name: 'Producto 1' },
-      { name: 'Producto 2' },
-      { name: 'Producto 3' }
-    ]);
-  }, []);
+  const handleGoToPicker = () => {
+    navigate('/picker-dashboard', { state: { user, products } });
+  };
 
   return (
-    <div>
+    <div className="order-list">
       <h1>Lista de Productos</h1>
+      <p><strong>Usuario:</strong> {user.name}</p>
+      <p><strong>Correo:</strong> {user.email}</p>
+      <p><strong>Teléfono:</strong> {user.phone}</p>
+      <p><strong>Tipo de Orden:</strong> {user.typeOrder}</p>
       <ul>
         {products.map((product, index) => (
-          <li key={index}>{product.name}</li>
+          <li key={index}>
+            <img src={product.image} alt={product.name} />
+            <div>
+              <p><strong>{product.name}</strong></p>
+              <p>{product.quantity}</p>
+            </div>
+          </li>
         ))}
       </ul>
+      <button onClick={handleGoToPicker}>Ir al Panel del Picker</button>
     </div>
   );
 }
